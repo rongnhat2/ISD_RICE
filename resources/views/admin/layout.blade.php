@@ -45,84 +45,39 @@
 					<div class="user_nav_wrapper">
 						<div class="list_nav">
 							<div class="item_nav">
-								<div class="link_nav">
+								<a href="/statistical" class="link_nav">
 									<i class="fas fa-home"></i>
-								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										Trang chủ
-									</a>
-									<a href="#" class="sub_item">
-										Trang Cá Nhân
-									</a>
-									<a href="/category" class="sub_item">
-										Danh mục
-									</a>
-									<a href="/resource" class="sub_item">
-										Nhà Cung Cấp
-									</a>
-									<a href="/trademark" class="sub_item">
-										Thương Hiệu
-									</a>
-									<a href="/item" class="sub_item">
-										Sản Phẩm
-									</a>
-								</div>
+								</a>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
+								<a href="/item" class="link_nav">
 									<i class="fas fa-archive"></i>
-								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										
-									</a>
-								</div>
+								</a>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
-									<i class="fas fa-book"></i>
-								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										
-									</a>
-								</div>
-							</div>
-							<div class="item_nav">
-								<div class="link_nav">
+								<a href="/category" class="link_nav">
 									<i class="fas fa-bookmark"></i>
-								</div>
-								<div class="dropdown">
-									<a href="#" class="sub_item">
-										
-									</a>
-								</div>
+								</a>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
-									<i class="fas fa-clone"></i>
-								</div>
+								<a href="/trademark" class="link_nav">
+									<i class="fas fa-trademark"></i>
+								</a>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
-									<i class="fas fa-comment"></i>
-								</div>
+								<a href="/resource" class="link_nav">
+									<i class="fab fa-sourcetree"></i>
+								</a>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
-									<i class="fas fa-file"></i>
-								</div>
+								<a href="" class="link_nav">
+									<i class="fas fa-history"></i>
+								</a>
 							</div>
 							<div class="item_nav">
-								<div class="link_nav">
+								<a href="/gallery" class="link_nav">
 									<i class="fas fa-images"></i>
-								</div>
-								<div class="dropdown">
-									<a href="/gallery" class="sub_item">
-										Thư Viện Ảnh
-									</a>
-								</div>
+								</a>
 							</div>
 							<div class="item_nav">
 								<div class="link_nav">

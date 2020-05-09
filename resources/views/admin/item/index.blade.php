@@ -7,7 +7,7 @@
 			<div class="table_wrapper">
 				<div class="title_table">
 					<div class="title_name">
-						Danh Sách Danh Mục
+						Danh Sách Sản Phẩm
 					</div>
 					<div class="title_side">
 						<a href="{{ route('item.add') }}" class="I-button bg_primary text_light">Thêm</a>

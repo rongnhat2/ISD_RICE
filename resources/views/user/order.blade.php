@@ -12,30 +12,28 @@
 						        <th>Stt</th>
 						        <th>Sản Phẩm</th>
 						        <th>Số Lượng</th>
+						        <th>Đơn Giá</th>
 						        <th>Thành Tiền</th>
 						        <th>Xóa</th>
 					      	</tr>
 					    </thead>
 					    <tbody>
-					      	<tr>
-						        <td>John</td>
-						        <td>Doe</td>
-						        <td>john@example.com</td>
-					      	</tr>
-					      	<tr>
-						        <td>John</td>
-						        <td>Doe</td>
-						        <td>john@example.com</td>
-					      	</tr>
-					      	<tr>
-						        <td>John</td>
-						        <td>Doe</td>
-						        <td>john@example.com</td>
-					      	</tr>
+							@if ( Session::has('cart') )
+						    	<?php foreach ($item as $key => $value): ?>
+							      	<tr>
+								        <td>ID</td>
+								        <td><?php echo $value['data']->item_name ?></td>
+								        <td><?php echo $value['value'] ?></td>
+								        <td><?php echo number_format($value['data']->item_prices) . " Đồng" ?></td>
+								        <td><?php echo number_format($value['data']->item_prices * $value['value']) . " Đồng" ?></td>
+								        <td><a href="">Xóa</a></td>
+							      	</tr>
+						    	<?php endforeach ?>
+							@endif
 					    </tbody>
 					</table>
 					<div class="calc_money">
-						Tổng : <span>100.000</span> đ
+						Tổng : <span><?php echo number_format($total_qty) . " " ?></span>Đồng
 					</div>
 					<div class="send_order">
 						<button type="submit">Gửi Đơn Hàng</button>

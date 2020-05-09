@@ -11,4 +11,12 @@ class Customer
 			$this->customer = $customer;
 		}
 	}
+
+    public function Create($item){
+        $id = $item->id;
+        $username = $item->name;
+        $email = $item->email;
+        $data = ['id'=>$id, 'username' => $username, 'email' => $email];
+        $this->customer = $data;
+    }
 }

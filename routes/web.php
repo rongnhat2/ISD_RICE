@@ -38,7 +38,7 @@ Route::post('/postOrder', 'CustomerController@postOrder')->name('customer.postOr
 
 Route::get('/cart', 'CartController@index')->name('cart_index');
 
-Route::post('/add-to-cart', 'CartController@getAddToCart')->name('add_to_card');
+Route::post('/add-to-cart/{id}', 'CartController@getAddToCart')->name('add_to_card');
 
 Route::get('clear', 'CartController@clear')->name('clear');
 
@@ -48,18 +48,6 @@ Route::get('/demo_ajax', 'CartController@demo_ajax')->name('demo_ajax');
 Route::get('/test_function_auth', 'CartController@test_function_auth')->name('test_function_auth');
 
 
-// Route::get('add-to-cart/{id}',[
-//     "as"=>'them-gio-hang',
-//     "uses"=>'itemController@getAddToCart'
-// ]);
-// Route::get('orderNow/{id}',[
-//     "as"=>'them-gio-hang',
-//     "uses"=>'itemController@orderNow'
-// ]);
-// Route::get('del-cart/{id}',[
-//     "as"=>'xoa-gio-hang',
-//     "uses"=>'itemController@getDelItemCart'
-// ]);
 
 Auth::routes();
 
@@ -68,10 +56,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'adminController@admin')->name('admin');
 
 
-
 Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
 
 
+    // modulle gallery
+    Route::prefix('statistical')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/', 'StatisticalController@index')->name('statistical.index');
+        // Route::get('/create', 'GalleryController@create')->name('gallery.add');
+        // Route::post('/create', 'GalleryController@store')->name('gallery.store');
+        // Route::get('/edit/{id}', 'ItemController@edit')->name('item.edit');
+        // Route::post('/edit/{id}', 'ItemController@update')->name('item.edit');
+        // Route::get('/delete/{id}', 'ItemController@delete')->name('item.delete');
+    });
 
     // modulle gallery
     Route::prefix('gallery')->group(function () {

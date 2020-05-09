@@ -43,6 +43,7 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request->category_name);
     	try {
             DB::beginTransaction();
             // Insert data to user table
@@ -54,6 +55,7 @@ class CategoryController extends Controller
             DB::commit();
             return redirect()->route('category.index');
         } catch (\Exception $exception) {
+            dd($exception);
             DB::rollBack();
         }
     }
@@ -108,6 +110,5 @@ class CategoryController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
         }
-
     }
 }

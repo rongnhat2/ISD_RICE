@@ -5,24 +5,28 @@ namespace App;
 class Cart
 {
 	public $items = null;
+	public $totalQty = 0;
 
 	public function __construct($oldCart){
 		if($oldCart){
 			$this->items = $oldCart->items;
+			$this->totalQty = $oldCart->totalQty;
 		}
 	}
 
 	public function add($item){
-        $name = $item->cart_name;
+        // $name = 'name';
         $id = $item->cart_id;
-        // dd($item->cart_id);
-        $giohang = ['qty'=>0, 'name' => $name];
+        $amount = $item->cart_amount;
+        // dd($amount);
+        $giohang = ['qty'=>0, 'id' => $id];
         if($this->items){
             if(array_key_exists($id, $this->items)){
                 $giohang = $this->items[$id];
             }
         }
-        $giohang['qty']++;
+        $giohang['qty'] += $amount;
+        $this->totalQty += $amount;
         $this->items[$id] = $giohang;
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\Cart;
 use Carbon\Carbon;
+use DB;
 
 class CartController extends Controller
 {
@@ -23,7 +24,7 @@ class CartController extends Controller
     }
     public function clear(){
         Session::flush();
-        return redirect()->Route('cart_index');
+        return redirect()->Route('customer.index');
     }
 
     public function test_function_auth(){
@@ -31,23 +32,19 @@ class CartController extends Controller
     }
 
     public function demo_ajax(Request $request){
-
-            $query = $request->cart_name;
-            // dd($query);
         	$oldCart    =   Session('cart') ? Session::get('cart') : null;
 	        $cart       =   new Cart($oldCart);
 	        $cart->add($request);
 	        $request->session()->put('cart',$cart);
-            // $query = $request->get('cart_name');
-            // $data['cart_id'] = $request->cart_id;
-            // $data['cart_name'] = $request->cart_name;
-            $data_cart = Session::get('cart')->items;
-
-            // dd($data);
+            // $data_cart = Session::get('cart')->items;
+            $data_cart = Session::get('cart')->totalQty;
+            
            	return $data_cart;
     }
 
-    public function getAddToCart(Request $request){
+
+
+    public function getAddToCart(Request $request, $id){
     	// dd($request);
         $oldCart    =   Session('cart') ? Session::get('cart') : null;
         $cart       =   new Cart($oldCart);
