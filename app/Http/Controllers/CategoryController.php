@@ -29,9 +29,11 @@ class CategoryController extends Controller
         $total = 1;
         // dd($categories);
         if (count($categories) == 0) {
-            $categories = DB::table('categories')->get();
+            $categories_1 = DB::table('categories')->get();
             $total = 0;
         }
+        $total_item = DB::table('items')->select('items.category_id', $total_item)->groupBy('items.category_id')->get();
+            dd($total_item);
         // $categories = DB::table('categories')->get();
         return view('admin.category.index', compact('categories', 'total'));
     }

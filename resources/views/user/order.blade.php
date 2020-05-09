@@ -37,8 +37,8 @@
 												<input type="hidden" name="" class="value_input" value="<?php echo $value['value'] ?>">
 											</div>
 								        </td>
-								        <td><?php echo number_format($value['data']->item_prices) . " Đồng" ?></td>
-								        <td><?php echo number_format($value['data']->item_prices * $value['value']) . " Đồng" ?></td>
+								        <td class="single_price" value="<?php echo $value['data']->item_prices ?>"><?php echo number_format($value['data']->item_prices) . " Đồng" ?></td>
+								        <td class="count_prices"><?php echo number_format($value['data']->item_prices * $value['value']) . " Đồng" ?></td>
 								        <td><a class="open_remove" data-toggle="modal" data-target="#myModal">Xóa</a></td>
 								    	<input type="hidden" name="item[]" value="<?php echo $value['data']->id ?>" class="data_id">
 								    	<input type="hidden" name="amount[]" value="<?php echo $value['value'] ?>" class="data_amount">

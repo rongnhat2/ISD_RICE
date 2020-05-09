@@ -10,7 +10,8 @@ $('.list_array_item').each(function( index ) {
     $(this).find('.down_calc').on('click', function(){
         // var data = $(this).parent().find('.value_input').val()
         var data = $(this).parent().find('.val_calc').html()
-        // console.log(data)
+        var single_price = $(this).parent().parent().parent().find('.single_price').attr('value')
+        // console.log(single_price)
         if (data > 1) {
             data = data - 1;
             $.ajax({
@@ -33,7 +34,8 @@ $('.list_array_item').each(function( index ) {
                 }
             })
         }
-
+        var count_prices = data * single_price;
+        $(this).parent().parent().parent().find('.count_prices').html(format(count_prices)  + " Đồng")
         $(this).parent().find('.value_input').val(data)
         $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())
 
@@ -42,8 +44,11 @@ $('.list_array_item').each(function( index ) {
         var data = $(this).parent().find('.val_calc').html()
         // var data = $(this).parent().find('.value_input').val()
         data = data - -1;
+        var single_price = $(this).parent().parent().parent().find('.single_price').attr('value')
         $(this).parent().find('.value_input').val(data)
         $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())
+        var count_prices = data * single_price;
+        $(this).parent().parent().parent().find('.count_prices').html(format(count_prices) + " Đồng")
 
         $.ajax({
             headers: {

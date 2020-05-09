@@ -33,14 +33,9 @@
                         	@else
 								<a href="">Thông Tin Cá Nhân</a>
 								<a href="">Lịch Sử Giao Dịch</a>
-								<a href="{{ route('logout') }}"
-	                               onclick="event.preventDefault();
-	                                             document.getElementById('logout-form').submit();">
+								<a data-toggle="modal" data-target="#logout">
 	                                Đăng Xuất
 	                            </a>
-	                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-	                                @csrf
-	                            </form>
                         	@endguest
 						</div>
 						<div class="nav_wrapper">
@@ -108,14 +103,9 @@
 											</div>
 											<a href="">Thông Tin Cá Nhân</a>
 											<a href="">Lịch Sử Giao Dịch</a>
-											<a href="{{ route('logout') }}"
-		                                       onclick="event.preventDefault();
-		                                                     document.getElementById('logout-form').submit();">
-		                                        Đăng Xuất
-		                                    </a>
-		                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-		                                        @csrf
-		                                    </form>
+											<a data-toggle="modal" data-target="#logout">
+				                                Đăng Xuất
+				                            </a>
 										</div>
 									</div>
                         		@endguest
@@ -199,6 +189,23 @@
 			</div>
 		</footer>
 	</body>
+	<div id="logout" class="modal fade" role="dialog">
+	  	<div class="modal-dialog">
+	   		<div class="modal-content">
+		      	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        	<h4 class="modal-title">Bạn muốn đăng xuất ?</h4>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+		      	</div>
+		      	<div class="modal-footer">
+		        	<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" type="button" class="btn btn-success" data-dismiss="modal">Đăng Xuất</a>
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+		      	</div>
+	    	</div>
+	  	</div>
+	</div>
 	<script src="{{ asset('user/js/bootstrap3.js') }}"></script>
 	<script src="{{ asset('user/js/effect_custom.js') }}"></script>
 </html>

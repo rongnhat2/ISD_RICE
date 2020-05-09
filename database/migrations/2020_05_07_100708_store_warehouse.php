@@ -15,7 +15,9 @@ class StoreWarehouse extends Migration
     {
         Schema::create('warehouse', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('trademark_name');
+            $table->string('username');
+            $table->integer('id_item');
+            $table->integer('qty_item');
             $table->timestamps();
         });
     }
