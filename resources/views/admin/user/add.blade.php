@@ -16,7 +16,7 @@
 								Tên Nhân Viên
 							</div>
 							<div class="input_form">
-								<input type="text" name="name">
+								<input type="text" name="name" required="">
 							</div>
 						</div>
 						<div class="input_wrapper">
@@ -24,7 +24,7 @@
 								Email
 							</div>
 							<div class="input_form">
-								<input type="email" name="email">
+								<input type="email" name="email" required="">
 							</div>
 						</div>
 						<div class="input_wrapper">
@@ -32,7 +32,7 @@
 								Mật Khẩu
 							</div>
 							<div class="input_form">
-								<input type="password" name="password">
+								<input type="password" name="password" required="">
 							</div>
 						</div>
 						<div class="input_wrapper">
@@ -40,7 +40,7 @@
 								Nhập Lại Mật Khẩu
 							</div>
 							<div class="input_form">
-								<input type="password" name="confirm_password">
+								<input type="password" name="confirm_password" required="">
 							</div>
 						</div>
 						<div class="input_wrapper">

@@ -20,7 +20,7 @@
 					    <tbody>
 							@if ( Session::has('cart') )
 						    	<?php foreach ($item as $key => $value): ?>
-							      	<tr class="item_<?php echo $value['data']->id ?>">
+							      	<tr class="list_array_item item_<?php echo $value['data']->id ?>">
 								        <!-- <td>{{ $key }}</td> -->
 								        <td><?php echo $value['data']->item_name ?></td>
 								        <td>

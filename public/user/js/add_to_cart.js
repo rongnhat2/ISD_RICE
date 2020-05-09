@@ -5,7 +5,7 @@ $('.Add_to_cart').on('click',function(){
 	let item_prices = $('.item_prices').attr('value');
 	var _token = $('input[name="_token"]').val();
 
-	// console.log(cart_name)
+	// console.log(item_prices)
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -24,8 +24,8 @@ $('.Add_to_cart').on('click',function(){
         	$('.Add_to_cart').html('Đã thêm')
             $('.Add_to_cart').unbind();
 	    },
-      	error: function () {
-        	console.log('error')
-      	}
+        error: function (request, status, error) {
+            alert(request.responseText);
+        }
     })
 });

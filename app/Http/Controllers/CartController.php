@@ -80,6 +80,38 @@ class CartController extends Controller
         return $data;
     }
 
+    public function UpdateAmount(Request $request){
+        $oldCart    =   Session('cart') ? Session::get('cart') : null;
+        $cart       =   new Cart($oldCart);
+        $cart->UpdateAmount($request->cart_id, $request->cart_amount);
+        $request->session()->put('cart',$cart);
+
+        $price_cart = 0;
+        $qty_cart = 0;
+
+        // số lượng sản phẩm
+        $qty_cart = Session::get('cart')->totalQty;
+
+        // nếu đã tồn tại giỏ hàng, lấy sản phẩm trong giỏ hàng, hoặc trả về null
+        $cart_save = Session('cart') ? Session::get('cart')->items : null;
+
+        // Tính lại giá trị đơn hàng
+        if ($cart_save != null) {
+            foreach ($cart_save as $key => $value) {
+                $item[$key]['data'] = DB::table('items')->where('id', '=', $value['id'])->first();
+                $item[$key]['value'] = $value['qty'];
+                $price_cart += $item[$key]['data']->item_prices * $item[$key]['value'];
+            }
+            // dd($total_qty);
+        }
+
+
+        $data['qty_cart'] = $qty_cart;
+        $data['price_cart'] = $price_cart;
+        
+        return $data;
+    }
+
 
 
 

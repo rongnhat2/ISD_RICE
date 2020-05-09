@@ -97,34 +97,5 @@ class admin_seed extends Seeder
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
-
-        DB::table('categories')->insert([
-        	'category_name' => 'Gạo',
-        	'category_status' => '1',
-            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-        ]);
-        DB::table('categories')->insert([
-        	'category_name' => 'Thức Ăn Chăn Nuôi',
-        	'category_status' => '1',
-            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-        ]);
-
-        DB::table('items')->insert([
-            'category_id' => '1',
-            'item_name' => 'Gạo 1',
-            'item_size' => '100',
-            'item_discount' => '100',
-            'item_resource' => '100',
-            'item_trademark' => '100',
-            'item_prices' => '100',
-            'item_image' => '100',
-            'item_amounts' => '100',
-            'item_detail' => '100',
-            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-        ]);
-        
     }
 }

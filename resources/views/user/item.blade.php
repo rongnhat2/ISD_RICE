@@ -10,6 +10,14 @@
 				<div class="subitem_info">
 					<div class="info_wrapper">
 						<div class="info_title">
+							Tên Sản Phẩm :
+						</div>
+						<div class="info_text">
+							<?php echo $item->item_name ?>
+						</div>
+					</div>
+					<div class="info_wrapper">
+						<div class="info_title">
 							Khối Lượng :
 						</div>
 						<div class="info_text">

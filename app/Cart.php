@@ -21,7 +21,7 @@ class Cart
         // $name = 'name';
         $id = $item->cart_id;
         $amount = $item->cart_amount;
-        $itemPrice = $item->item_prices;
+        $itemPrice = $item->itemPrice;
         
         // dd($amount);
         $giohang = ['qty'=>0, 'id' => $id];
@@ -36,18 +36,7 @@ class Cart
         $this->items[$id] = $giohang;
     }
 
-    //xóa 1
-	public function reduceByOne($id){
-		$this->items[$id]['qty']--;
-		$this->items[$id]['price'] -= $this->items[$id]['item']['price'];
-		$this->totalQty--;
-		$this->totalPrice -= $this->items[$id]['item']['price'];
-		if($this->items[$id]['qty']<=0){
-			unset($this->items[$id]);
-		}
-	}
-
-	//xóa nhiều
+	// Xóa Sản Phẩm
 	public function removeItem($id, $amount){
 		// dd($this->items[$id]);
 		$this->totalQty -= $amount;
@@ -55,5 +44,16 @@ class Cart
 		// $this->totalQty -= $this->items[$id]['qty'];
 		// $this->totalPrice -= $this->items[$id]['price'];
 		unset($this->items[$id]);
+	}
+
+	// Cập Nhật Sản Phẩm
+	public function UpdateAmount($id, $amount){
+		// dd($this->items[$id]);
+		$this->totalQty += $amount;
+		$this->items[$id]['qty'] += $amount;
+		// dd($this->totalQty);
+		// $this->totalQty -= $this->items[$id]['qty'];
+		// $this->totalPrice -= $this->items[$id]['price'];
+		// unset($this->items[$id]);
 	}
 }

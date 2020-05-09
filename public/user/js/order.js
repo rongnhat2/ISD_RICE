@@ -4,19 +4,72 @@ $('.open_remove').on('click', function(){
 	$('.amount_cart_item').val(father.find('.data_amount').val())
 })
 
-$('.I-order').find('.val_calc').html($('.I-order').find('.value_input').val())
-$('.I-order').find('.down_calc').on('click', function(){
-    var data = $(this).parent().find('.value_input').val()
-    if (data > 1) data = data - 1;
-    $(this).parent().find('.value_input').val(data)
-    $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())
-})
-$('.I-order').find('.up_calc').on('click', function(){
-    var data = $(this).parent().find('.value_input').val()
-    data = data - -1;
-    $(this).parent().find('.value_input').val(data)
-    $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())
-})
+$('.list_array_item').each(function( index ) {
+    let cart_id = $(this).find('.data_id').val();
+    let cart_amount = $(this).find('.data_amount').val();
+    $(this).find('.down_calc').on('click', function(){
+        // var data = $(this).parent().find('.value_input').val()
+        var data = $(this).parent().find('.val_calc').html()
+        // console.log(data)
+        if (data > 1) {
+            data = data - 1;
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/UpdateAmount",
+                type: "GET",
+                data: {
+                    cart_id: cart_id,
+                    cart_amount: '-1',
+                },
+                success:function(data){ //dữ liệu nhận về
+                    console.log(data)
+                    $('.cart_value_wrapper').html(data['qty_cart']);
+                    $('.totalPrice').html(format(data['price_cart']));
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            })
+        }
+
+        $(this).parent().find('.value_input').val(data)
+        $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())
+
+    })
+    $(this).find('.up_calc').on('click', function(){
+        var data = $(this).parent().find('.val_calc').html()
+        // var data = $(this).parent().find('.value_input').val()
+        data = data - -1;
+        $(this).parent().find('.value_input').val(data)
+        $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/UpdateAmount",
+            type: "GET",
+            data: {
+                cart_id: cart_id,
+                cart_amount: '1',
+            },
+            success:function(data){ //dữ liệu nhận về
+                console.log(data)
+                $('.cart_value_wrapper').html(data['qty_cart']);
+                $('.totalPrice').html(format(data['price_cart']));
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        })
+    })
+
+
+});
+// $('.I-order').find('.val_calc').html($('.I-order').find('.value_input').val())
+
 
 $('.remove_item').on('click',function(){
 	let cart_id = $('.id_cart_item').val();

@@ -24,7 +24,7 @@
 								Tên Chức Vụ
 							</div>
 							<div class="input_form">
-								<input type="text" name="display_name">
+								<input type="text" name="display_name" required="">
 							</div>
 						</div>
 						<div class="input_wrapper">
