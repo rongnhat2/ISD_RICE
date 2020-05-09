@@ -55,6 +55,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'adminController@admin')->name('admin');
 
+Route::post('/loginAdmin', 'CustomerController@adminpostLogin')->name('login');
 
 Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
 

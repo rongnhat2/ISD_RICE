@@ -11,6 +11,11 @@
 		<link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 		<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+		<script src="{{ asset('js/Chart.js') }}"></script>
+		<script src="{{ asset('js/utils.js') }}"></script>
+		<script src="{{ asset('js/analyser.js') }}"></script>
+		<script src="{{ asset('js/analytics.js') }}"></script>
+
 	</head>
 	<body> 
 		<header>
@@ -26,6 +31,9 @@
 						<a href="#" class="notification">
 							<i class="far fa-bell"></i>
 						</a>
+							@if(Session::has('customer'))
+								<?php echo Session::get('customer')->customer['username'] ?>
+							@endif 
 						<a href="#" class="user">
 							<i class="far fa-user"></i>
 						</a>

@@ -36,7 +36,7 @@
 					        <td>{{ $item->category_name }}</td>
 					        <td>{{ $item->item_name }}</td>
 					        <td>{{ $item->item_size  }}</td>
-					        <td>{{ $item->item_discount }}</td>
+					        <td>{{ $item->item_discount }} %</td>
 					        <td>{{ $item->resource_name }}</td>
 					        <td>{{ $item->trademark_name }}</td>
 					        <td>{{ $item->item_prices }}</td>

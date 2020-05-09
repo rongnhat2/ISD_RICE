@@ -59,7 +59,7 @@
 					</div>
 					<div class="logo flexY">
 						<div class="logo_image">
-							<img src="images/logo.png">
+							<img src="{{ asset('images/logo.png') }}">
 						</div>
 						<a href="{{ route('customer.index') }}" class="logo_text flexY">
 							Khánh Châu

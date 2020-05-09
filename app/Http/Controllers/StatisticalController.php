@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Hash;
 use DB;
 use App\Statistical;
+use Carbon\Carbon;
 
 class StatisticalController extends Controller
 {
@@ -19,13 +20,33 @@ class StatisticalController extends Controller
 
     public function index()
     {
-        $items = DB::table('items')
-            ->join('categories', 'items.category_id', '=', 'categories.id')
-            ->join('resources', 'items.item_resource', '=', 'resources.id')
-            ->join('trademarks', 'items.item_trademark', '=', 'trademarks.id')
-            ->select('items.*', 'resources.resource_name', 'trademarks.trademark_name', 'categories.category_name')
-        	->get();
-        return view('admin.statistical.index', compact('items'));
+        // Tính tổng theo ngày
+        $total_item = DB::raw('SUM(warehouse.qty_item) as total');
+
+        // xử lí thời gian hiện tại
+        $nowDate = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        $startDate = date("Y-m-01", strtotime($nowDate));
+        $endDate = date("Y-m-t", strtotime($nowDate));
+
+        // nhập kho tháng này
+        $count_ware = DB::table('warehouse')
+                        ->where('warehouse.created_at', '>', $startDate)
+                        ->where('warehouse.created_at', '<', $endDate)
+                        ->select('warehouse.created_at', $total_item)
+                        ->groupBy('warehouse.created_at')
+                        ->get();
+        // dd($count_ware);
+        // tạo dữ liệu mẫu
+        for ($i=0; $i < 32; $i++) { 
+            $data[$i] = 0;
+        }
+
+        // lấy dữ liệu thật
+        foreach ($count_ware as $key => $value) {
+            $date = (int)substr($value->created_at, 8, 2);
+            $data[$date] = $value->total;
+        }
+        return view('admin.statistical.index', compact('data', 'count_ware'));
     }
 
     public function create()

@@ -344,11 +344,31 @@
     margin: 10px 0;
 }
 .I-item .item_wrapper{
+    position: relative;
     width: 100%;
     height: 100%;
     background-color: #fff;
     padding: 10px;
+    overflow: hidden;
 }
+.I-item .item_wrapper .item_banner{
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    width: 100%;
+    height: 50px;
+    background-color: #f00;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    display: none;
+}
+.I-item .item_wrapper .item_banner.is-sell{
+    display: flex;
+}
+
 .I-item .item_wrapper .item_image{
     width: 100%;
     height: 300px;
@@ -356,6 +376,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 0 10px 0;
+    overflow: hidden;
 }
 .I-item .item_wrapper .item_image img{
     width: 100%;

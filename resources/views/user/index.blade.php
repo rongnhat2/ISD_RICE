@@ -47,6 +47,9 @@
 				<?php foreach ($items as $key => $value): ?>
 					<div class="I-item">
 						<div class="item_wrapper">
+							<div class="item_banner {{ $value->item_amounts ? '' : 'is-sell' }}">
+								Tạm hết
+							</div>
 							<div class="item_image">
 								<img src="{{asset($value->item_image)}}">
 							</div>
@@ -71,6 +74,9 @@
 				<?php foreach ($items as $key => $value): ?>
 					<div class="I-item">
 						<div class="item_wrapper">
+							<div class="item_banner {{ $value->item_amounts ? '' : 'is-sell' }}">
+								Tạm hết
+							</div>
 							<div class="item_image">
 								<img src="{{asset($value->item_image)}}">
 							</div>

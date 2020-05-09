@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
+use App\Customer;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -23,25 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $customer_session = DB::table('users')->where('email', '=', Auth::User()->email)->first();
+        $customer       =   new Customer($customer_session);
+        $customer->Create($customer_session);
+        $request->session()->put('customer', $customer);
+        dd( Session::get('customer'));
         return redirect()->Route('item.index');
-    }
-    public function image()
-    {
-        $item = DB::table('image')->get();
-
-        return view('image', compact('item'));
-    }
-    public function imagecreate(Request $request)
-    {   
-        $name = $request->image;
-        for ($i=0; $i < count($name); $i++) { 
-            $image = time() . $name[$i]->getClientOriginalName();
-            $name[$i]->move(public_path('images'), $image);
-            DB::table('image')->insert([
-                'name'              => 'images/'.$image,
-            ]);
-        }
-        
-        return redirect()->Route('image');
     }
 }
