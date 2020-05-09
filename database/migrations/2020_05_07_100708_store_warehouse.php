@@ -13,7 +13,7 @@ class StoreWarehouse extends Migration
      */
     public function up()
     {
-        Schema::create('trademarks', function (Blueprint $table) {
+        Schema::create('warehouse', function (Blueprint $table) {
             $table->increments('id');
             $table->string('trademark_name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class StoreWarehouse extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trademarks');
+        Schema::dropIfExists('warehouse');
     }
 }

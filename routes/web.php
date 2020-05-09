@@ -39,10 +39,12 @@ Route::post('/postOrder', 'CustomerController@postOrder')->name('customer.postOr
 Route::get('/cart', 'CartController@index')->name('cart_index');
 
 Route::post('/add-to-cart/{id}', 'CartController@getAddToCart')->name('add_to_card');
+Route::post('/del-cart/{id}', 'CartController@getDelItemCart')->name('delete_card');
 
 Route::get('clear', 'CartController@clear')->name('clear');
 
-Route::get('/demo_ajax', 'CartController@demo_ajax')->name('demo_ajax');
+Route::get('/Add_to_cart', 'CartController@Add_to_cart')->name('Add_to_cart');
+Route::get('/Remove_item', 'CartController@Remove_item')->name('Remove_item');
 
 
 Route::get('/test_function_auth', 'CartController@test_function_auth')->name('test_function_auth');

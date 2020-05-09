@@ -44,7 +44,7 @@
 						<div class="info_title">
 							Đơn Giá
 						</div>
-						<div class="info_text">
+						<div class="info_text item_prices" value="<?php echo $item->item_prices ?>">
 							<?php echo number_format($item->item_prices). " đ" ?> 
 						</div>
 					</div>
@@ -78,7 +78,11 @@
 							<input type="hidden" name="" class="value_input" value="1">
 						</div>
 						<div class="cart_item">
-							<a id_cart="<?php echo $item->id ?>" class="test_ajax">Thêm Vào Giỏ Hàng</a>
+							<?php if ($has_item): ?>
+								<a class="is-close">Đã thêm</a>
+							<?php else: ?>
+								<a id_cart="<?php echo $item->id ?>" class="Add_to_cart">Thêm Vào Giỏ Hàng</a>
+							<?php endif ?>
 						</div>
 						<div class="order_item">
 							<a href="/demo_ajax">Đặt Hàng</a>
@@ -91,37 +95,8 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$('.test_ajax').on('click',function(){
-		// console.log(1)
-			let cart_id = $(this).attr('id_cart');
-			let cart_amount = $('.value_input').val();
-			// console.log(cart_amount)
-        	var _token = $('input[name="_token"]').val();
-
-        	// console.log(cart_name)
-		    $.ajax({
-		        headers: {
-		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		        },
-		        url: "/demo_ajax",
-		        type: "GET",
-		        data: {
-                    cart_id: cart_id,
-                    cart_amount: cart_amount
-                },
-		        success:function(data){ //dữ liệu nhận về
-		        	console.log(data)
-		        	$('.cart_value_wrapper').html(data);
-			    },
-		      	error: function () {
-		        	console.log('error')
-		      	}
-		    })
-		});
-	</script>
-			
-
+	<script src="{{ asset('user/js/add_to_cart.js') }}"></script>
+	
 @endsection()
 
 

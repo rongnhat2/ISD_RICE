@@ -31,15 +31,67 @@ class CartController extends Controller
     	
     }
 
+    public function Add_to_cart(Request $request){
+        $oldCart    =   Session('cart') ? Session::get('cart') : null;
+        $cart       =   new Cart($oldCart);
+        $cart->add($request);
+        $request->session()->put('cart',$cart);
+        // $data_cart = Session::get('cart')->items;
+        $data_cart = Session::get('cart')->totalQty;
+        
+        return $data_cart;
+    }
+    public function Remove_item(Request $request){
+
+        $price_cart = 0;
+        $qty_cart = 0;
+        $oldCart = Session('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($request->cart_id, $request->cart_amount);
+
+        // reset lại đơn hàng
+        if(count($cart->items) > 0){
+
+            // update cart mới
+            Session::put('cart', $cart);
+
+            // số lượng sản phẩm
+            $qty_cart = Session::get('cart')->totalQty;
+
+            // nếu đã tồn tại giỏ hàng, lấy sản phẩm trong giỏ hàng, hoặc trả về null
+            $cart_save = Session('cart') ? Session::get('cart')->items : null;
+
+            // Tính lại giá trị đơn hàng
+            if ($cart_save != null) {
+                foreach ($cart_save as $key => $value) {
+                    $item[$key]['data'] = DB::table('items')->where('id', '=', $value['id'])->first();
+                    $item[$key]['value'] = $value['qty'];
+                    $price_cart += $item[$key]['data']->item_prices * $item[$key]['value'];
+                }
+                // dd($total_qty);
+            }
+        }
+        else{
+            Session::forget('cart');
+        }
+
+        $data['qty_cart'] = $qty_cart;
+        $data['price_cart'] = $price_cart;
+        return $data;
+    }
+
+
+
+
     public function demo_ajax(Request $request){
-        	$oldCart    =   Session('cart') ? Session::get('cart') : null;
-	        $cart       =   new Cart($oldCart);
-	        $cart->add($request);
-	        $request->session()->put('cart',$cart);
+            $oldCart    =   Session('cart') ? Session::get('cart') : null;
+            $cart       =   new Cart($oldCart);
+            $cart->add($request);
+            $request->session()->put('cart',$cart);
             // $data_cart = Session::get('cart')->items;
             $data_cart = Session::get('cart')->totalQty;
             
-           	return $data_cart;
+            return $data_cart;
     }
 
 

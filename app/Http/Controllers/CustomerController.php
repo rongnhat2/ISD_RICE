@@ -81,7 +81,7 @@ class CustomerController extends Controller
 
     public function postOrder(Request $request) {
     	if(Auth::check()){
-    		dd('da dang nhap');
+    		dd($request);
     	}else{
 			Session::flash('error', 'Bạn Cần Đăng Nhập Để Đặt Hàng');
 	        return redirect()->route('customer.login');
