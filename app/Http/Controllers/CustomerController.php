@@ -38,6 +38,10 @@ class CustomerController extends Controller
                 'classify_id' => '1'
             ]);
 
+
+            Session::flash('success', 'Đăng Kí Thành Công!');
+            // dd($userCreate);
+            
             DB::commit();
             return redirect()->route('customer.login');
         } catch (\Exception $exception) {

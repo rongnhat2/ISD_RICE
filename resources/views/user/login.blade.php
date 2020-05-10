@@ -15,6 +15,15 @@
 				</button>
 			</div>
 		@endif
+		@if ( Session::has('success') )
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<strong>{{ Session::get('success') }}</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+			</div>
+		@endif
 		<form method="post" action="{{ route('customer.postLogin') }}" enctype="multipart/form-data">
 			@csrf
 		  	<div class="form-group">

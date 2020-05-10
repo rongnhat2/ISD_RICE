@@ -18,7 +18,6 @@ class UserDetail extends Migration
             $table->string('user_id');
             $table->string('phone');
             $table->string('address');
-            $table->string('idcode');
             $table->timestamps();
         });
     }

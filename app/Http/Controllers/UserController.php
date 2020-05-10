@@ -47,7 +47,6 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
-
             // Insert data to role_user
             $userCreate->roles()->attach($request->roles);
 
