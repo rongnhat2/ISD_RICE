@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
         // lấy tất cả danh mục
         $all_category = DB::table('categories')->get();
-        $count_item = 0;
+        $count_item = [];
         // thống kê số lượng sản phẩm
         foreach ($all_category as $key => $value) {
             $count_item[$value->id] = 0;
