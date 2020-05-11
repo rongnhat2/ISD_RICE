@@ -20,7 +20,7 @@ class RoleController extends Controller
     // list all role
     public function index()
     {
-        $listRole = $this->role->all();
+        $listRole = $this->role->where('id', '!=', '1')->get();
         return view('admin.role.index', compact('listRole'));
 
     }
