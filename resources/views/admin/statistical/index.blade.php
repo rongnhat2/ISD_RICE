@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('body')
 
-
+<!-- 
 <div class="I-layout">
 	<div class="layout_wrapper_01">
 		<div class="I-data">
@@ -157,5 +157,5 @@
     });
 
 </script>
-				
+				 -->
 @endsection()
