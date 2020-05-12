@@ -24,7 +24,7 @@ class Items extends Migration
             $table->string('item_prices');
             $table->string('item_image');
             $table->string('item_amounts');
-            $table->string('item_detail');
+            $table->longText('item_detail');
             $table->timestamps();
         });
     }

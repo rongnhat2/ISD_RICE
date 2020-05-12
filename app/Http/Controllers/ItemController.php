@@ -62,6 +62,7 @@ class ItemController extends Controller
             DB::commit();
             return redirect()->route('item.index');
         } catch (\Exception $exception) {
+            dd($exception);
             DB::rollBack();
         }
     }
