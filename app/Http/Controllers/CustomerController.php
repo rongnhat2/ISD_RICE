@@ -141,7 +141,9 @@ class CustomerController extends Controller
             $request_data = $request->All();
             $validator = $this->admin_credential_rules($request_data);
             if($validator->fails()) {
-                return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
+                Session::flash('error', 'Mật Khẩu Nhập Lại Không Chính Xác');
+                return redirect()->route('customer.changePassword');    
+                // return response()->json(array('error' => $validator->getMessageBag()->toArray()), 400);
             } else {  
                 $current_password = Auth::User()->password;           
                 if(Hash::check($request_data['current-password'], $current_password)) {           
@@ -152,7 +154,7 @@ class CustomerController extends Controller
                     Session::flash('success', 'Đổi Mật Khẩu Thành Công!');
                     return redirect()->route('customer.edit');
                 } else {           
-                    Session::flash('error', 'Mật khẩu không đúng!');
+                    Session::flash('error', 'Mật khẩu Cũ không đúng!');
                     return redirect()->route('customer.changePassword');
                 }
             }        

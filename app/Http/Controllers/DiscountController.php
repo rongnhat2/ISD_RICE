@@ -19,6 +19,7 @@ class DiscountController extends Controller
 
     public function index()
     {
+    	$discount = null;
         $discount = DB::table('discount')->get();
         return view('admin.discount.index', compact('discount'));
     }

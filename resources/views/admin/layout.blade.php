@@ -82,11 +82,11 @@
 									<i class="fas fa-percent"></i>
 								</a>
 							</div>
-							<!-- <div class="item_nav">
+							<div class="item_nav">
 								<a href="/warehouse" class="link_nav">
 									<i class="fas fa-download"></i>
 								</a>
-							</div> -->
+							</div>
 							<div class="item_nav">
 								<a href="/gallery" class="link_nav">
 									<i class="fas fa-images"></i>

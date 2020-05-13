@@ -37,13 +37,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="I-discount">
-		<div class="wrapper">
-			<div class="discount_wrapper">
-				<img src="{{asset($discount_image->image_url)}}">
+
+	@if ( $discount_image != null )
+		<div class="I-discount">
+			<div class="wrapper">
+				<div class="discount_wrapper">
+					<img src="{{asset($discount_image->image_url)}}">
+				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 	<div class="I-listitem">
 		<div class="wrapper">
 			<div class="listitem_title">

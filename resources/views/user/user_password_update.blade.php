@@ -28,15 +28,15 @@
 			<input type="hidden" name="id" value="<?php echo $user->id ?>">
 		  	<div class="form-group">
 		    	<label for="oldPass">Mật Khẩu Cũ :</label>
-		    	<input type="text" class="form-control" id="oldPass" name="current-password" required>
+		    	<input type="password" class="form-control" id="oldPass" name="current-password" required>
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="newPass">Mật Khẩu Mới :</label>
-		    	<input type="text" class="form-control" id="newPass" name="password" required>
+		    	<input type="password" class="form-control" id="newPass" name="password" required>
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="password_confirmation">Nhập Lại Mật Khẩu :</label>
-		    	<input type="text" class="form-control" id="password_confirmation" name="password_confirmation" required>
+		    	<input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
 		  	</div>
 		  	<button type="submit" class="btn btn-default">Cập Nhật</button>
 		</form> 
