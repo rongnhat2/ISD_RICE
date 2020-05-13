@@ -99,9 +99,11 @@
 										<i class="fas fa-user"></i>
 										<div class="user_action">
 											<div class="username">
-												<!-- Nguyễn Nhật Long -->
+												@if(Session::has('customer'))
+													<?php echo Session::get('customer')->customer['username'] ?>
+												@endif 
 											</div>
-											<a href="">Thông Tin Cá Nhân</a>
+											<a href="/customer_update">Thông Tin Cá Nhân</a>
 											<a href="">Lịch Sử Giao Dịch</a>
 											<a data-toggle="modal" data-target="#logout">
 				                                Đăng Xuất

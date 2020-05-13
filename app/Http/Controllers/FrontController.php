@@ -19,11 +19,14 @@ class FrontController extends Controller
         // lấy giữ liệu trong category
         $categories =  DB::table('categories')->get();
 
+        // lấy giữ liệu trong category
+        $discount_image =  DB::table('discount')->where('status', '=', '1')->first();
+
         // dd($cart);
         $items =  DB::table('items')->limit(4)->get();
         // dd($items);
         // $text = 'Tất Cả Sản Phẩm';
-        return view('user.index', compact('categories', 'items', 'amount_item'));
+        return view('user.index', compact('categories', 'items', 'amount_item', 'discount_image'));
     }
     
     public function allcategory(){

@@ -128,6 +128,8 @@
 .I-header .action .action_wrapper .login_wrapper .user .user_action .username{
     border-bottom: 1px solid #d49526;
     padding: 5px 10px;
+    text-align: center;
+    font-weight: bold;
 }
 .I-header .action .action_wrapper .login_wrapper .user .user_action a{
     display: flex;
@@ -276,6 +278,23 @@
     text-align: center !important;
 }
 
+
+.I-discount{
+    margin: 20px 0;
+    width: 100%;
+    height: 300px;
+}
+.I-discount .discount_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.I-discount img{
+    width: 100%;
+}
 
 .I-carousel{
     margin: 20px 0;

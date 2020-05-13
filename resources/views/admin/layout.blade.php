@@ -78,8 +78,8 @@
 								</a>
 							</div>
 							<div class="item_nav">
-								<a href="" class="link_nav">
-									<i class="fas fa-history"></i>
+								<a href="/discount" class="link_nav">
+									<i class="fas fa-percent"></i>
 								</a>
 							</div>
 							<!-- <div class="item_nav">

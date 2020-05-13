@@ -32,6 +32,12 @@ Route::post('/customer_login', 'CustomerController@postLogin')->name('customer.p
 Route::get('/customer_register', 'FrontController@register')->name('customer.register');
 Route::post('/customer_register', 'CustomerController@store')->name('customer.store');
 
+Route::get('/customer_update', 'CustomerController@edit')->name('customer.edit');
+Route::post('/customer_update', 'CustomerController@update')->name('customer.update');
+
+Route::get('/changePassword', 'CustomerController@changePassword')->name('customer.changePassword');
+Route::post('/changePassword', 'CustomerController@updatePassword')->name('customer.updatePassword');
+
 Route::post('/postOrder', 'CustomerController@postOrder')->name('customer.postOrder');
 
 
@@ -59,6 +65,21 @@ Route::post('/loginAdmin', 'CustomerController@adminpostLogin')->name('login');
 
 Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
 
+    // modulle discount
+    Route::prefix('discount')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/', 'DiscountController@index')->name('discount.index');
+        Route::get('/create', 'DiscountController@create')->name('discount.add');
+        Route::post('/create', 'DiscountController@store')->name('discount.store');
+        Route::get('/updateDiscount', 'DiscountController@update')->name('discount.update');
+    });
 
     // modulle warehouse
     Route::prefix('warehouse')->group(function () {

@@ -1,6 +1,5 @@
 @extends('user.layout')
 @section('body')
-
 	<div class="I-carousel">
 		<div class="wrapper">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -35,6 +34,13 @@
 				    <span class="glyphicon glyphicon-chevron-right"></span>
 				    <span class="sr-only">Next</span>
 			  	</a>
+			</div>
+		</div>
+	</div>
+	<div class="I-discount">
+		<div class="wrapper">
+			<div class="discount_wrapper">
+				<img src="{{asset($discount_image->image_url)}}">
 			</div>
 		</div>
 	</div>
