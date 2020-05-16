@@ -17,6 +17,13 @@ class admin_seed extends Seeder
 
     public function run()
     {
+        $id = DB::table('users')->insertGetId([
+            'name'              => 'admin',
+            'email'             => 'admin@admin.com',
+            'password'          => Hash::make('12345678'),
+            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+        ]);
 	    DB::table('permissions')->insert([
 	        'name'              => 'admin',
 	        'display_name' 			=> 'Là Admin',
@@ -187,187 +194,180 @@ class admin_seed extends Seeder
 	        "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
 	    ]);
 
-        DB::table('user_detail')->insert([
-            'user_id'              => '1',
+        DB::table('user_detail')->insertGetId([
+            'user_id'              => $id,
         ]);
-        DB::table('users')->insert([
-            'name'              => 'admin',
-            'email'             => 'admin@admin.com',
-            'password'          => Hash::make('12345678'),
-            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-        ]);
-        DB::table('roles')->insert([
+        $role_id = DB::table('roles')->insertGetId([
             'name'              => 'superadmin',
             'display_name'      => 'Quản Lí Cao Cấp',
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_user')->insert([
-            'user_id'           => '1',
-            'role_id'      		=> '1',
+            'user_id'           => $id,
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '1',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '2',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '3',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '4',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '5',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '6',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '7',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '8',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '9',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '10',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '11',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '12',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '13',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '14',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '15',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '16',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '17',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '18',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '19',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '20',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '21',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '22',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '23',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '24',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '25',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '26',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
         DB::table('role_permission')->insert([
             'permission_id'     => '27',
-            'role_id'      		=> '1',
+            'role_id'      		=> $role_id,
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
