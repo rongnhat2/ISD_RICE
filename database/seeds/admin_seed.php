@@ -187,6 +187,9 @@ class admin_seed extends Seeder
 	        "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
 	    ]);
 
+        DB::table('user_detail')->insert([
+            'user_id'              => '1',
+        ]);
         DB::table('users')->insert([
             'name'              => 'admin',
             'email'             => 'admin@admin.com',
