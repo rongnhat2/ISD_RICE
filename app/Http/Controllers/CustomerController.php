@@ -243,6 +243,10 @@ class CustomerController extends Controller
         }
     }
 
+
+    public function admingetLogin() {
+        return view('auth.login');
+    }
     public function postOrder(Request $request) {
     	if(Auth::check()){
     		dd(Auth::User()->email);

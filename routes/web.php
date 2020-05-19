@@ -60,7 +60,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'adminController@admin')->name('admin');
-
+Route::get('/login', 'CustomerController@admingetLogin')->name('getlogin');
 Route::post('/loginAdmin', 'CustomerController@adminpostLogin')->name('login');
 
 Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
@@ -130,6 +130,7 @@ Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
         // Route::get('/edit/{id}', 'ItemController@edit')->name('item.edit');
         // Route::post('/edit/{id}', 'ItemController@update')->name('item.edit');
         // Route::get('/delete/{id}', 'ItemController@delete')->name('item.delete');
+        Route::get('getLibrary', 'GalleryController@getLibrary')->name('discount.getLibrary');
     });
 
     // modulle item
