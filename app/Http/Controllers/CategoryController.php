@@ -51,7 +51,6 @@ class CategoryController extends Controller
             // Insert data to user table
             $categoryCreate = $this->category->create([
                 'category_name' => $request->category_name,
-                'category_status' => '1',
             ]);
 
             DB::commit();
@@ -84,9 +83,7 @@ class CategoryController extends Controller
             DB::beginTransaction();
             // update user tabale
             $this->category->where('id', $id)->update([
-                'category_name' => $request->category_name,
-                // 'category_status' => $request->category_status
-                'category_status' => $request->select_index,
+                'category_name' => $request->category_name
             ]);
 
             DB::commit();

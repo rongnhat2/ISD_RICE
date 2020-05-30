@@ -5,6 +5,7 @@ $('.open_remove').on('click', function(){
 })
 
 $('.list_array_item').each(function( index ) {
+    var father = $(this)
     let cart_id = $(this).find('.data_id').val();
     let cart_amount = $(this).find('.data_amount').val();
     $(this).find('.down_calc').on('click', function(){
@@ -14,6 +15,7 @@ $('.list_array_item').each(function( index ) {
         // console.log(single_price)
         if (data > 1) {
             data = data - 1;
+            father.find('.data_amount').val(data);
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -44,6 +46,7 @@ $('.list_array_item').each(function( index ) {
         var data = $(this).parent().find('.val_calc').html()
         // var data = $(this).parent().find('.value_input').val()
         data = data - -1;
+        father.find('.data_amount').val(data);
         var single_price = $(this).parent().parent().parent().find('.single_price').attr('value')
         $(this).parent().find('.value_input').val(data)
         $(this).parent().find('.val_calc').html($(this).parent().find('.value_input').val())

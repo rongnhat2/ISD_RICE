@@ -234,7 +234,6 @@
 .I-order a{
     cursor: pointer;
 }
-
 .I-order .calc_item{
     float: left;
     width: 100%;
@@ -457,6 +456,7 @@
     float: left;
     width: 60%;
     padding: 0 30px;
+    overflow: hidden;
 }
 .I-subitem .subitem_content .subitem_info .info_wrapper{
     float: left;
@@ -472,6 +472,12 @@
 }
 .I-subitem .subitem_content .subitem_info .info_wrapper .info_text{
     float: left;
+}
+.I-subitem .subitem_content .subitem_info .info_wrapper .info_text .discount{
+    float: left;
+    color: #9e9e9e;
+    text-decoration: line-through;
+    margin: 0 20px 0 0;
 }
 .I-subitem .subitem_content .subitem_info .info_wrapper .info_text i{
     color: green;
@@ -560,6 +566,216 @@
     padding: 30px;
     background-color: #fff;
     border-radius: 3px;
+}
+.I-subitem .subitem_comment{
+    margin: 10px 0 0 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.I-subitem .subitem_comment .comment_item{
+    width: 100%;
+    padding: 30px 0;
+}
+.I-subitem .subitem_comment .comment_item:not(:last-child){
+    border-bottom: 1px solid #ccc;
+}
+.I-subitem .subitem_comment .comment_item .comment_header{
+    width: 100%;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_user{
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_comment{
+    width: 100%;
+    font-size: 16px;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_action{
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_action .text{
+    font-size: 14px;
+    color: #288ad9;
+    cursor: pointer;
+    padding: 0 40px 0 0;
+    float: left;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_recomment{
+    display: none;
+    width: 100%;
+    padding: 10px 30px;
+    border: 1px solid #ccc;
+    background-color: #eaeaea;
+    margin: 0 0 10px 0;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_recomment.is-open{
+    display: block;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_recomment .recomment_wrapper{
+    width: 100%;
+    padding: 10px 0;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_recomment .recomment_wrapper .ch_user{
+    font-size: 18px;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_recomment .recomment_wrapper .ch_comment{
+    font-size: 14px;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_recomment .recomment_wrapper:not(:last-child){
+    border-bottom: 1px solid #ccc;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_action_submit{
+    display: none;
+    width: 100%;
+    overflow: hidden;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_action_submit.is-open{
+    display: block;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_action_submit textarea{
+    width: 100%;
+    resize: none;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+.I-subitem .subitem_comment .comment_item .comment_header .ch_action_submit button{
+    margin: 10px 0;
+    float: right;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #fff;
+    transition: all 300ms ease;
+}
+.I-subitem .voting_wrapper{
+    width: 100%;
+    height: 150px;
+}
+.I-subitem .voting_wrapper .calc_voting{
+    float: left;
+    width: 50%;
+    height: 100%;
+    border-right: 1px solid #ccc;
+}
+.I-subitem .voting_wrapper .calc_voting .item_vote{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.I-subitem .voting_wrapper .calc_voting .item_vote .text{
+    float: left;
+    width: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-subitem .voting_wrapper .calc_voting .item_vote i{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 4px 0;
+}
+.I-subitem .voting_wrapper .calc_voting .item_vote .bar_chart{
+    float: left;
+    width: 250px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-subitem .voting_wrapper .calc_voting .item_vote .bar_chart .bar_line{
+    position: relative;
+    width: 200px;
+    height: 5px;
+    border-radius: 5px;
+    background-color: #ccc;
+}
+.I-subitem .voting_wrapper .calc_voting .item_vote .bar_chart .bar_line .bar_value{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    border-radius: 5px;
+    background-color: #ff9727;
+    transition: all 300ms ease;
+}
+.I-subitem .voting_wrapper .detail_voting{
+    padding: 0 30px;
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.I-subitem .voting_wrapper .detail_voting textarea{
+    resize: none;
+    width: 100%;
+    height: 70px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+.I-subitem .voting_wrapper .detail_voting .list_voting{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.I-subitem .voting_wrapper .detail_voting .list_voting .is-active{
+    color: #ff9727;
+}
+.I-subitem .voting_wrapper .detail_voting .list_voting .is-focus{
+    color: #ff9727;
+}
+.I-subitem .voting_wrapper .detail_voting button{
+    float: right;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 30px;
+    background-color: #fff;
+    transition: all 300ms ease;
+}
+.I-subitem .voting_wrapper .detail_voting button:hover{
+    background-color: #000;
+    color: #fff;
+}
+.I-subitem .voting_wrapper .is_not_login{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.I-subitem .voting_wrapper .is_login{
+    margin: 10px 0 0 0;
+    width: 100%;
+    height: 100%;
+}
+.I-subitem .voting_wrapper .is_success{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+.I-subitem .voting_wrapper .is_login.is-success{
+    display: none;
+}
+.I-subitem .voting_wrapper .is_success.is-success{
+    display: flex;
 }
 
 .I-form{

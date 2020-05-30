@@ -527,3 +527,14 @@
 .update_discount{
 	cursor: pointer;
 }
+.search_table{
+
+}
+.search_table input{
+	width: 100%;
+	height: 32px;
+}
+.search_table button{
+	width: 100%;
+	height: 32px;
+}

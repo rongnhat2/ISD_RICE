@@ -50,7 +50,7 @@ class ItemController extends Controller
                 'category_id' => $request->category_index,
                 'item_name' => $request->item_name,
                 'item_size' => $request->item_size,
-                'item_discount' => $request->item_discount,
+                'item_discount' => '0',
                 'item_resource' => $request->resource_index,
                 'item_trademark' => $request->trademark_index,
                 'item_prices' => $request->item_prices,
@@ -104,7 +104,6 @@ class ItemController extends Controller
                 'category_id' => $request->category_index,
                 'item_name' => $request->item_name,
                 'item_size' => $request->item_size,
-                'item_discount' => $request->item_discount,
                 'item_resource' => $request->resource_index,
                 'item_trademark' => $request->trademark_index,
                 'item_prices' => $request->item_prices,
@@ -135,6 +134,33 @@ class ItemController extends Controller
         } catch (\Exception $exception) {
             DB::rollBack();
         }
+    }
 
+
+    // ajax item
+    public function getItem(Request $request)
+    {   
+        $item = DB::table('items')
+            ->join('categories', 'items.category_id', '=', 'categories.id')
+            ->join('resources', 'items.item_resource', '=', 'resources.id')
+            ->join('trademarks', 'items.item_trademark', '=', 'trademarks.id')
+            ->select('items.*', 'resources.resource_name', 'trademarks.trademark_name', 'categories.category_name')
+            ->when(!empty($request->value[0]), function ($query) use ($request) {
+                return $query->where('items.item_name', 'like', '%'.$request->value[0].'%');
+            })
+            ->when(!empty($request->value[1]), function ($query) use ($request) {
+                return $query->where('categories.category_name', 'like', '%'.$request->value[1].'%');
+            })
+            ->when(!empty($request->value[2]), function ($query) use ($request) {
+                return $query->where('resources.resource_name', 'like', '%'.$request->value[2].'%');
+            })
+            ->when(!empty($request->value[3]), function ($query) use ($request) {
+                return $query->where('trademarks.trademark_name', 'like', '%'.$request->value[3].'%');
+            })
+            ->when(!empty($request->value[4]), function ($query) use ($request) {
+                return $query->where('items.item_prices', 'like', '%'.$request->value[4].'%');
+            })
+            ->get();
+        return $item;
     }
 }

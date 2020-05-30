@@ -72,9 +72,11 @@ class WarehouseController extends Controller
 	        }
             // die;
             DB::commit();
+            Session::flash('success', 'Nhập Kho Thành Công');
             return redirect()->route('warehouse.index');
         } catch (\Exception $exception) {
-            dd($exception);
+            Session::flash('error', 'Bạn Phải Thêm Ít Nhất Một Đối Tượng');
+            return redirect()->route('warehouse.add');
             DB::rollBack();
         }
     }

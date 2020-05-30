@@ -94,6 +94,19 @@
 							</div>
 							<div class="item_nav">
 								<div class="link_nav">
+									<i class="fas fa-shipping-fast"></i>
+								</div>
+								<div class="dropdown">
+									<a href="/ship" class="sub_item">
+										Đơn Hàng
+									</a>
+									<a href="/allship" class="sub_item">
+										Tất Cả Đơn Hàng
+									</a>
+								</div>
+							</div>
+							<div class="item_nav">
+								<div class="link_nav">
 									<i class="fas fa-users"></i>
 								</div>
 								<div class="dropdown">

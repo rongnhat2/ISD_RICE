@@ -26,7 +26,7 @@
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="phone">Số Điện Thoại</label>
-		    	<input type="text" class="form-control" id="phone" name="phone" required>
+		    	<input type="text" class="form-control" id="phone" name="phone" required pattern="[0-9]*">
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="address">Địa Chỉ</label>

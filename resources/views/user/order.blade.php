@@ -2,6 +2,15 @@
 @section('body')
 
 	<div class="I-order">
+		@if ( Session::has('success') )
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<strong>{{ Session::get('success') }}</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+			</div>
+		@endif
 		<form method="post" action="{{ route('customer.postOrder') }}" enctype="multipart/form-data">
 			@csrf
 			<div class="wrapper">
@@ -19,6 +28,9 @@
 					    </thead>
 					    <tbody>
 							@if ( Session::has('cart') )
+								@if(Session::has('customer'))
+									<input type="hidden" name="id_user" value="<?php echo Session::get('customer')->customer['id'] ?>">
+								@endif 
 						    	<?php foreach ($item as $key => $value): ?>
 							      	<tr class="list_array_item item_<?php echo $value['data']->id ?>">
 								        <!-- <td>{{ $key }}</td> -->
@@ -37,8 +49,8 @@
 												<input type="hidden" name="" class="value_input" value="<?php echo $value['value'] ?>">
 											</div>
 								        </td>
-								        <td class="single_price" value="<?php echo $value['data']->item_prices ?>"><?php echo number_format($value['data']->item_prices) . " Đồng" ?></td>
-								        <td class="count_prices"><?php echo number_format($value['data']->item_prices * $value['value']) . " Đồng" ?></td>
+								        <td class="single_price" value="<?php echo $value['prices'] ?>"><?php echo number_format($value['prices']) . " Đồng" ?></td>
+								        <td class="count_prices"><?php echo number_format($value['prices'] * $value['value']) . " Đồng" ?></td>
 								        <td><a class="open_remove" data-toggle="modal" data-target="#myModal">Xóa</a></td>
 								    	<input type="hidden" name="item[]" value="<?php echo $value['data']->id ?>" class="data_id">
 								    	<input type="hidden" name="amount[]" value="<?php echo $value['value'] ?>" class="data_amount">

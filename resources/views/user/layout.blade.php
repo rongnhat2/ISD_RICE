@@ -23,10 +23,13 @@
 						</div>
 					</div>
 					<div class="sub_nav">
-						<div class="search_wrapper">
-							<input type="" name="">
-							<a href="#" class="flex"><i class="fas fa-search"></i></a>
-						</div>
+						<form class="search_wrapper" id="search-form-respon" action="/item_finded" method="post" enctype="multipart/form-data">
+							{{ csrf_field() }}
+							<input type="" name="item_find">
+							<a href="#" class="flex" onclick="event.preventDefault(); document.getElementById('search-form-respon').submit();">
+                                <i class="fas fa-search"></i>
+                            </a>
+						</form>
 						<div class="user_wrapper">
                         	@guest
 								<a href="{{ route('customer.login') }}">Đăng Nhập</a>
@@ -66,10 +69,17 @@
 						</a>
 					</div>
 					<div class="search flex">
-						<div class="search_wrapper">
+						<form class="search_wrapper" id="search-form" action="/item_finded" method="post" enctype="multipart/form-data">
+							{{ csrf_field() }}
+							<input type="" name="item_find">
+							<a href="#" class="flex" onclick="event.preventDefault(); document.getElementById('search-form').submit();">
+                                <i class="fas fa-search"></i>
+                            </a>
+						</form>
+						<!-- <div class="">
 							<input type="" name="">
 							<a href="#" class="flex"><i class="fas fa-search"></i></a>
-						</div>
+						</div> -->
 					</div>
 					<div class="action flexX">
 						<div class="action_wrapper">

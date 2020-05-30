@@ -56,14 +56,6 @@
 						</div>
 						<div class="input_wrapper">
 							<div class="input_title flexY">
-								Giảm Giá
-							</div>
-							<div class="input_form">
-								<input type="number" name="item_discount" required="" value="<?php echo $items->item_discount ?>">
-							</div>
-						</div>
-						<div class="input_wrapper">
-							<div class="input_title flexY">
 								Nguồn Gốc - Thương hiệu
 							</div>
 							<div class="row">

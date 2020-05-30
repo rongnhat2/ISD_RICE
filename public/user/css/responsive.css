@@ -338,6 +338,13 @@ main{
     border: 1px solid #ccc;
     cursor: pointer;
 }
+.I-subitem .voting_wrapper .calc_voting{
+    width: 100%;
+    border: none;
+}
+.I-subitem .voting_wrapper .detail_voting{
+    width: 100%;
+}
 
 .I-footer{
 	height: auto;

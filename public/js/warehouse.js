@@ -14,14 +14,17 @@ $('.add_new_warehouse').on('click', function(){
 	+        	'</a>'
 	+       '</td>'
     +  	'</tr>'
-	$('.warehouse_wrapper').append(component);
+
+    if (id != '' && name != '' && amount != '') {
+		$('.warehouse_wrapper').append(component);
+		$(this).parent().parent().parent().find('.select_index').val(null)
+		$(this).parent().parent().parent().find('.select_value').val(null)
+		$(this).parent().parent().parent().find('.item_amount_input').val(null)
+		$(this).parent().parent().parent().find('.select_item').html(null)
+	}
 	$('.action_table').on('click', function(){
 		$(this).parent().parent().remove()
 	})
-	$(this).parent().parent().parent().find('.select_index').val(null)
-	$(this).parent().parent().parent().find('.select_value').val(null)
-	$(this).parent().parent().parent().find('.item_amount_input').val(null)
-	$(this).parent().parent().parent().find('.select_item').html(null)
 })
 
 

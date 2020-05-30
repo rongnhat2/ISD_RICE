@@ -13,32 +13,43 @@
 						<a href="{{ route('item.add') }}" class="I-button bg_primary text_light">Thêm</a>
 					</div>
 				</div>
-				<table class="table table-bordered">
+				<table class="table table-bordered" id="myTable">
+			    	<thead class="search_table">
+			      		<tr>
+					        <th></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th></th>
+					        <th class="input"><input type="" name=""></th>
+					        <th></th>
+					        <th colspan="2"><button class="search_button item">Tìm Kiếm</button></th>
+				      	</tr>
+			    	</thead>
 			    	<thead>
 			      		<tr>
-					        <th>ID</th>
-					        <th>Danh mục</th>
-					        <th>Tên</th>
-					        <th>Kích Thước</th>
-					        <th>Giảm Giá</th>
-					        <th>Nguồn Gốc</th>
-					        <th>Thương Hiệu</th>
-					        <th>Đơn Giá</th>
-					        <th>Số Lượng</th>
+					        <th onclick="sortListDir(0, 2)">ID</th>
+					        <th onclick="sortListDir(1, 2)">Tên</th>
+					        <th onclick="sortListDir(2, 2)">Danh mục</th>
+					        <th onclick="sortListDir(3, 2)">Nguồn Gốc</th>
+					        <th onclick="sortListDir(4, 2)">Thương Hiệu</th>
+					        <th onclick="sortListDir(5, 2)">Kích Thước</th>
+					        <th onclick="sortListDir(6, 2)">Đơn Giá</th>
+					        <th onclick="sortListDir(7, 2)">Số Lượng</th>
 					        <th>Sửa</th>
 					        <th>Xóa</th>
 				      	</tr>
 			    	</thead>
-			    	<tbody>
+			    	<tbody class="list_output">
                			@foreach($items as $item)
-				      	<tr>
+				      	<tr class="item_output">
 					        <td>{{ $loop->index + 1 }}</td>
-					        <td>{{ $item->category_name }}</td>
 					        <td>{{ $item->item_name }}</td>
-					        <td>{{ $item->item_size  }}</td>
-					        <td>{{ $item->item_discount }} %</td>
+					        <td>{{ $item->category_name }}</td>
 					        <td>{{ $item->resource_name }}</td>
 					        <td>{{ $item->trademark_name }}</td>
+					        <td>{{ $item->item_size  }}</td>
 					        <td>{{ $item->item_prices }}</td>
 					        <td>{{ $item->item_amounts }}</td>
 					        <td>
@@ -59,5 +70,7 @@
 		</div>
 	</div>
 </div>
+<script src="{{ asset('js/table.js') }}"></script>		
+<script src="{{ asset('js/sort_table.js') }}"></script>
 				
 @endsection()

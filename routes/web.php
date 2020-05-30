@@ -25,35 +25,26 @@ Route::prefix('user_category')->group(function () {
 });
 Route::get('/checkout', 'FrontController@checkout')->name('customer.checkout');
 Route::get('/user_item/{id}', 'FrontController@item')->name('customer.item');
+Route::post('item_finded', 'FrontController@item_finded')->name('customer.finded');
 
 Route::get('/customer_login', 'FrontController@login')->name('customer.login');
 Route::post('/customer_login', 'CustomerController@postLogin')->name('customer.postLogin');
-
 Route::get('/customer_register', 'FrontController@register')->name('customer.register');
 Route::post('/customer_register', 'CustomerController@store')->name('customer.store');
-
 Route::get('/customer_update', 'CustomerController@edit')->name('customer.edit');
 Route::post('/customer_update', 'CustomerController@update')->name('customer.update');
-
 Route::get('/changePassword', 'CustomerController@changePassword')->name('customer.changePassword');
 Route::post('/changePassword', 'CustomerController@updatePassword')->name('customer.updatePassword');
 
 Route::post('/postOrder', 'CustomerController@postOrder')->name('customer.postOrder');
-
-
+Route::get('submitVoting', 'CustomerController@submitVoting')->name('item.submitVoting');
+Route::get('submitComment', 'CustomerController@submitComment')->name('item.submitComment');
 
 Route::get('/cart', 'CartController@index')->name('cart_index');
-
 Route::get('clear', 'CartController@clear')->name('clear');
-
 Route::get('/Add_to_cart', 'CartController@Add_to_cart')->name('Add_to_cart');
 Route::get('/Remove_item', 'CartController@Remove_item')->name('Remove_item');
 Route::get('/UpdateAmount', 'CartController@UpdateAmount')->name('UpdateAmount');
-
-
-Route::get('/test_function_auth', 'CartController@test_function_auth')->name('test_function_auth');
-
-
 
 Auth::routes();
 
@@ -64,6 +55,38 @@ Route::get('/login', 'CustomerController@admingetLogin')->name('getlogin');
 Route::post('/loginAdmin', 'CustomerController@adminpostLogin')->name('login');
 
 Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
+
+
+    // modulle discount
+    Route::prefix('allship')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/', 'ShipController@allshipindex')->name('allship.index');
+        Route::get('/edit/{id}', 'ShipController@allshipedit')->name('shipall.edit');
+    });
+
+    // modulle discount
+    Route::prefix('ship')->group(function () {
+
+        // Route::middleware(['checkacl:user-list'])->get('/', 'UserController@index')->name('user.index');
+        // Route::middleware(['checkacl:user-add'])->get('/create', 'UserController@create')->name('user.add');
+        // Route::middleware(['checkacl:user-add'])->post('/create', 'UserController@store')->name('user.store');
+        // Route::middleware(['checkacl:user-edit'])->get('/edit/{id}', 'UserController@edit')->name('user.edit');
+        // Route::middleware(['checkacl:user-edit'])->post('/edit/{id}', 'UserController@update')->name('user.edit');
+        // Route::middleware(['checkacl:user-delete'])->get('/delete/{id}', 'UserController@delete')->name('user.delete');
+    
+        Route::get('/', 'ShipController@index')->name('ship.index');
+        Route::get('/edit/{id}', 'ShipController@edit')->name('ship.edit');
+        Route::get('/success/{id}', 'ShipController@success')->name('ship.success');
+        Route::get('/remove/{id}', 'ShipController@remove')->name('ship.remove');
+        Route::get('getShip', 'ShipController@getShip')->name('ship.getShip');
+    });
 
     // modulle discount
     Route::prefix('discount')->group(function () {
@@ -149,6 +172,7 @@ Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
         // Route::get('/edit/{id}', 'ItemController@edit')->name('item.edit');
         // Route::post('/edit/{id}', 'ItemController@update')->name('item.edit');
         // Route::get('/delete/{id}', 'ItemController@delete')->name('item.delete');
+        Route::get('getItem', 'ItemController@getItem')->name('item.getItem');
     });
 
 

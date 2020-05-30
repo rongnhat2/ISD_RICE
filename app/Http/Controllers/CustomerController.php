@@ -243,17 +243,98 @@ class CustomerController extends Controller
         }
     }
 
-
     public function admingetLogin() {
         return view('auth.login');
     }
     public function postOrder(Request $request) {
     	if(Auth::check()){
-    		dd(Auth::User()->email);
+            try {
+                // dd($request->item);
+                DB::beginTransaction();
+                $id = DB::table('users_orders')->insertGetId([
+                    'user_id' => $request->id_user,
+                    'total_price' => $request->totalPrice,
+                    'status' => '0',
+                    "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                    "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                ]);
+                for ($i=0; $i < count($request->item); $i++) { 
+                    $getItem = DB::table('items')->where('items.id', '=', $request->item[$i])->first();
+                    $getPrices = $getItem->item_prices - ($getItem->item_prices * $getItem->item_discount / 100);
+                    $getTotalPrices = $request->amount[$i] * $getPrices;
+                    DB::table('sub_orders')->insert([
+                        'order_id' => $id,
+                        'item_id' => $request->item[$i],
+                        'amounts' => $request->amount[$i],
+                        'unit_price' => $getPrices,
+                        'total_price' => $getTotalPrices,
+                        "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                        "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                    ]);
+                }
+                Session::forget('cart');
+                Session::flash('success', 'Đặt Hàng Thành Công');
+                DB::commit();
+                return redirect()->route('customer.checkout');
+            } catch (\Exception $exception) {
+                dd($exception);
+            }
     	}else{
 			Session::flash('error', 'Bạn Cần Đăng Nhập Để Đặt Hàng');
 	        return redirect()->route('customer.login');
     	}
+    }
+
+    public function submitVoting(Request $request){
+        $user_ = Session::has('customer') ? Session::get('customer')->customer : null;
+        $user =  DB::table('users')
+            ->where('users.id', '=', $user_['id'])
+            ->first(); 
+        if ($request->comment != null) {
+                DB::table('comment')->insert([
+                    'user_id' => $user->id,
+                    'item_id' => $request->item_id,
+                    'comment' => $request->comment,
+                ]);
+        }
+        if ($request->voting != null) {
+            $vote =  DB::table('voting')
+                ->where('voting.user_id', '=', $user->id)
+                ->where('voting.item_id', '=', $request->item_id)
+                ->first(); 
+            if ($vote == null) {
+                DB::table('voting')->insert([
+                    'user_id' => $user->id,
+                    'item_id' => $request->item_id,
+                    'item_vote' => $request->voting,
+                    "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                    "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                ]);
+            }else{
+                DB::table('voting')
+                    ->where('voting.user_id', '=', $user->id)
+                    ->where('voting.item_id', '=', $request->item_id)
+                    ->update([
+                        'item_vote' => $request->voting,
+                    ]);
+            }
+        }
+        return $request->item_id;
+    }
+    public function submitComment(Request $request){
+        $user_ = Session::has('customer') ? Session::get('customer')->customer : null;
+        $user =  DB::table('users')
+            ->where('users.id', '=', $user_['id'])
+            ->first();
+        DB::table('sub_comment')->insert([
+            'user_id' => $user->id,
+            'item_id' => $request->item_id,
+            'comment_id' => $request->comment_id,
+            'sub_comment' => $request->comment,
+            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+        ]);
+        return $user_['username'];
     }
 
 }

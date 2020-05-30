@@ -3,6 +3,15 @@
 
 <div class="I-layout flexX overflow-visible">
 	<div class="layout_wrapper_01">
+		@if ( Session::has('error') )
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<strong>{{ Session::get('error') }}</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+			</div>
+		@endif
 		<div class="I-form_input">
 			<div class="form_input_wrapper">
 				<div class="form_input">
@@ -37,7 +46,7 @@
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
 									<div class="input_form">
-										<input type="text" name="amount" required="" class="item_amount_input">
+										<input type="text" name="amount" required="" class="item_amount_input" pattern="[0-9]*">
 									</div>
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">

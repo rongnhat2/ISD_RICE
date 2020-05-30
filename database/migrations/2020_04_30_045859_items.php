@@ -18,13 +18,14 @@ class Items extends Migration
             $table->Integer('category_id');
             $table->string('item_name');
             $table->string('item_size');
-            $table->string('item_discount');
-            $table->string('item_resource');
-            $table->string('item_trademark');
-            $table->string('item_prices');
+            $table->integer('item_discount');
+            $table->string('item_resource')->nullable();
+            $table->string('item_trademark')->nullable();
+            $table->integer('item_prices');
             $table->string('item_image');
-            $table->string('item_amounts');
-            $table->longText('item_detail');
+            $table->integer('item_amounts');
+            $table->integer('item_sell');
+            $table->longText('item_detail')->nullable();;
             $table->timestamps();
         });
     }

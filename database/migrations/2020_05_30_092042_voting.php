@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UserDetail extends Migration
+class Voting extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class UserDetail extends Migration
      */
     public function up()
     {
-        Schema::create('user_detail', function (Blueprint $table) {
+        Schema::create('voting', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->integer('item_id');
+            $table->integer('item_vote');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class UserDetail extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_detail');
+        Schema::dropIfExists('voting');
     }
 }

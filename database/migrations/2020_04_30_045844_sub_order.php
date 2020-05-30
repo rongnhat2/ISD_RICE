@@ -15,11 +15,11 @@ class SubOrder extends Migration
     {
         Schema::create('sub_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('order_id');
-            $table->string('item_id');
-            $table->string('amounts');
-            $table->string('unit_price');
-            $table->string('total_price');
+            $table->integer('order_id');
+            $table->integer('item_id');
+            $table->integer('amounts');
+            $table->integer('unit_price');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }
