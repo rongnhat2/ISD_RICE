@@ -66,7 +66,7 @@
 							Số Lượng còn
 						</div>
 						<div class="info_text">
-							<?php echo $item->item_amounts. " Sản Phẩm"  ?>
+							<?php echo number_format($item->item_amounts). " Sản Phẩm"  ?>
 						</div>
 					</div>
 					<div class="info_wrapper">
@@ -74,7 +74,7 @@
 							Đã bán ra
 						</div>
 						<div class="info_text">
-							1.000.000 sản phẩm
+							<?php echo number_format($item->item_sell). " Sản Phẩm"  ?>
 						</div>
 					</div>
 					<div class="info_wrapper">

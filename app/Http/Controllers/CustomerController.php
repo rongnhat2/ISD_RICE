@@ -251,33 +251,35 @@ class CustomerController extends Controller
             try {
                 // dd($request->item);
                 DB::beginTransaction();
-                $id = DB::table('users_orders')->insertGetId([
-                    'user_id' => $request->id_user,
-                    'total_price' => $request->totalPrice,
-                    'status' => '0',
-                    "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-                    "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
-                ]);
-                for ($i=0; $i < count($request->item); $i++) { 
-                    $getItem = DB::table('items')->where('items.id', '=', $request->item[$i])->first();
-                    $getPrices = $getItem->item_prices - ($getItem->item_prices * $getItem->item_discount / 100);
-                    $getTotalPrices = $request->amount[$i] * $getPrices;
-                    DB::table('sub_orders')->insert([
-                        'order_id' => $id,
-                        'item_id' => $request->item[$i],
-                        'amounts' => $request->amount[$i],
-                        'unit_price' => $getPrices,
-                        'total_price' => $getTotalPrices,
+                    $id = DB::table('users_orders')->insertGetId([
+                        'user_id' => $request->id_user,
+                        'total_price' => $request->totalPrice,
+                        'status' => '0',
                         "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
                         "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
                     ]);
-                }
-                Session::forget('cart');
-                Session::flash('success', 'Đặt Hàng Thành Công');
-                DB::commit();
+                    for ($i=0; $i < count($request->item); $i++) { 
+                        $getItem = DB::table('items')->where('items.id', '=', $request->item[$i])->first();
+                        $getPrices = $getItem->item_prices - ($getItem->item_prices * $getItem->item_discount / 100);
+                        $getTotalPrices = $request->amount[$i] * $getPrices;
+                        DB::table('sub_orders')->insert([
+                            'order_id' => $id,
+                            'item_id' => $request->item[$i],
+                            'amounts' => $request->amount[$i],
+                            'unit_price' => $getPrices,
+                            'total_price' => $getTotalPrices,
+                            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+                        ]);
+                    }
+                    Session::forget('cart');
+                    Session::flash('success', 'Đặt Hàng Thành Công');
+                    DB::commit();
                 return redirect()->route('customer.checkout');
             } catch (\Exception $exception) {
-                dd($exception);
+                Session::flash('error', 'Bạn Cần Thêm Ít Nhất Một Sản Phẩm');
+                return redirect()->route('customer.checkout');
+                // dd($exception);
             }
     	}else{
 			Session::flash('error', 'Bạn Cần Đăng Nhập Để Đặt Hàng');
