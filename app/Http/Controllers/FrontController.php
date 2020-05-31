@@ -132,8 +132,8 @@ class FrontController extends Controller
             ->select('voting.item_id', 'voting.item_vote', DB::raw('Count(voting.item_vote) as total'))
             ->groupBy('voting.item_id','voting.item_vote')
             ->get();
+        $detail_vote = array();
         if ($count_all_vote != null && $sum_all_vote != null) {
-            $detail_vote = array();
             // lấy trung bình sau 1 dấu phấy
             $calc_allvote = round ($sum_all_vote->total / $count_all_vote->total , 1);
 
@@ -163,6 +163,7 @@ class FrontController extends Controller
 
         $total_item = DB::raw('count(*) as total');
         // thống kê số lượng recomment
+        $count_comment = null;
         foreach ($all_comment as $key => $value) {
             $count_comment[$value->id] = DB::table('sub_comment')
                                         ->where('sub_comment.comment_id', '=', $value->id)
