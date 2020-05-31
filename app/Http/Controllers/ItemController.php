@@ -56,6 +56,7 @@ class ItemController extends Controller
                 'item_prices' => $request->item_prices,
                 'item_image' => $request->item_image,
                 'item_amounts' => '0',
+                'item_sell' => '0',
                 'item_detail' => $request->item_detail,
             ]);
 
