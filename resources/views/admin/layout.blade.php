@@ -52,17 +52,17 @@
 				<div class="wrapper">
 					<div class="user_nav_wrapper">
 						<div class="list_nav">
-							<div class="item_nav">
+							<div class="item_nav" data-toggle="tooltip" title="Thống Kê">
 								<a href="/statistical" class="link_nav">
 									<i class="fas fa-home"></i>
 								</a>
 							</div>
-							<div class="item_nav">
+							<div class="item_nav" data-toggle="tooltip" title="Sản phẩm">
 								<a href="/item" class="link_nav">
 									<i class="fas fa-archive"></i>
 								</a>
 							</div>
-							<div class="item_nav">
+							<div class="item_nav" data-toggle="tooltip" title="Thống Kê">
 								<a href="/category" class="link_nav">
 									<i class="fas fa-bookmark"></i>
 								</a>
