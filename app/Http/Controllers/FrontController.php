@@ -219,4 +219,30 @@ class FrontController extends Controller
         return view('user.register', compact('categories', 'amount_item'));
     }
     
+    public function about_us(){
+
+        // nếu đã tồn tại giỏ hàng, lấy số lượng trong giỏ hàng, hoặc trả về 0
+        $amount_item = Session('cart') ? Session::get('cart')->totalQty : 0;
+
+        // lấy giữ liệu trong category
+        $categories =  DB::table('categories')->get();
+
+
+        $data = DB::table('pages')->first();
+
+        return view('user.aboutus', compact('categories', 'amount_item', 'data'));
+    }
+    public function contact_us(){
+
+        // nếu đã tồn tại giỏ hàng, lấy số lượng trong giỏ hàng, hoặc trả về 0
+        $amount_item = Session('cart') ? Session::get('cart')->totalQty : 0;
+
+        // lấy giữ liệu trong category
+        $categories =  DB::table('categories')->get();
+
+
+        $data = DB::table('pages')->first();
+
+        return view('user.contactus', compact('categories', 'amount_item', 'data'));
+    }
 }

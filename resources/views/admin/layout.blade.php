@@ -93,6 +93,11 @@
 								</a>
 							</div>
 							<div class="item_nav">
+								<a href="/pages" class="link_nav">
+									<i class="fas fa-copy"></i>
+								</a>
+							</div>
+							<div class="item_nav">
 								<div class="link_nav">
 									<i class="fas fa-shipping-fast"></i>
 								</div>

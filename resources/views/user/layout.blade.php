@@ -55,8 +55,8 @@
 										<i class="fas fa-caret-down"></i>
 									</div>
 								</li>
-								<li><a href="#">Về Chúng Tôi</a></li>
-								<li><a href="#">Liên Hệ</a></li>
+								<li><a href="{{ route('customer.about_us') }}">Về Chúng Tôi</a></li>
+								<li><a href="{{ route('customer.contact_us') }}">Liên Hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -136,8 +136,8 @@
 								<?php endforeach ?>
 							</div>
 						</li>
-						<li><a href="#">Về Chúng Tôi</a></li>
-						<li><a href="#">Liên Hệ</a></li>
+						<li><a href="{{ route('customer.about_us') }}">Về Chúng Tôi</a></li>
+						<li><a href="{{ route('customer.contact_us') }}">Liên Hệ</a></li>
 					</ul>
 				</div>
 			</div>

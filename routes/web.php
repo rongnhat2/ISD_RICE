@@ -27,6 +27,9 @@ Route::get('/checkout', 'FrontController@checkout')->name('customer.checkout');
 Route::get('/user_item/{id}', 'FrontController@item')->name('customer.item');
 Route::post('item_finded', 'FrontController@item_finded')->name('customer.finded');
 
+Route::get('about_us', 'FrontController@about_us')->name('customer.about_us');
+Route::get('contact_us', 'FrontController@contact_us')->name('customer.contact_us');
+
 Route::get('/customer_login', 'FrontController@login')->name('customer.login');
 Route::post('/customer_login', 'CustomerController@postLogin')->name('customer.postLogin');
 Route::get('/customer_register', 'FrontController@register')->name('customer.register');
@@ -56,6 +59,11 @@ Route::post('/loginAdmin', 'CustomerController@adminpostLogin')->name('login');
 
 Route::middleware(['checkacl:admin'], ['auth'])->group(function () {
 
+    // modulle discount
+    Route::prefix('pages')->group(function () {
+        Route::get('/', 'PageController@index')->name('pages.index');
+        Route::post('update', 'PageController@update')->name('pages.update');
+    });
 
     // modulle discount
     Route::prefix('allship')->group(function () {

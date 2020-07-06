@@ -1,6 +1,7 @@
 @extends('admin.layout')
 @section('body')
 
+
 <div class="I-layout">
 	<div class="layout_wrapper_01">
 		<div class="I-data">
@@ -11,7 +12,11 @@
 							Đơn Thành Công
 						</div>
 						<div class="data">
-							3000
+							<?php if ($order_success != null): ?>
+								<?php echo $order_success->total ?>
+							<?php else: ?>
+									0
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
@@ -23,7 +28,11 @@
 							Đơn Bị Hủy
 						</div>
 						<div class="data">
-							3000
+							<?php if ($order_remove != null): ?>
+								<?php echo $order_remove->total ?>
+							<?php else: ?>
+									0
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
@@ -35,7 +44,11 @@
 							Doanh Thu
 						</div>
 						<div class="data">
-							3000
+							<?php if ($order_prices != null): ?>
+								<?php echo number_format($order_prices->total) . " đ" ?>
+							<?php else: ?>
+									0
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
@@ -47,7 +60,11 @@
 							Sản Phẩm Bán Được
 						</div>
 						<div class="data">
-							3000
+							<?php if ($order_item != null): ?>
+								<?php echo number_format($order_item->total) . " đ" ?>
+							<?php else: ?>
+									0
+							<?php endif ?>
 						</div>
 					</div>
 				</div>
@@ -61,7 +78,7 @@
 			<div class="table_wrapper">
 				<div class="title_table">
 					<div class="title_name">
-						Nhập Xuất Tháng Này
+						Đơn Hàng Tháng Này
 					</div>
 				</div>
 				<div class="content_table">
@@ -112,7 +129,7 @@
                 		}
                 	echo "]";
                 ?>,
-            label: 'Nhập Vào'
+            label: 'Đơn Hàng'
         }]
     };
 

@@ -21,137 +21,88 @@ class StatisticalController extends Controller
     public function index()
     {
         // Tính tổng theo ngày
-        $total_item = DB::raw('SUM(warehouse.qty_item) as total');
+        $total_item = DB::raw('count(users_orders.updated_at) as total');
 
         // xử lí thời gian hiện tại
         $nowDate = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $startDate = date("Y-m-01", strtotime($nowDate));
         $endDate = date("Y-m-t", strtotime($nowDate));
 
-        // nhập kho tháng này
-        $count_ware = DB::table('warehouse')
-                        ->where('warehouse.created_at', '>', $startDate)
-                        ->where('warehouse.created_at', '<', $endDate)
-                        ->select('warehouse.created_at', $total_item)
-                        ->groupBy('warehouse.created_at')
+        // Đơn hàng tháng này
+        $count_ware = DB::table('users_orders')
+                        ->where('users_orders.updated_at', '>', $startDate)
+                        ->where('users_orders.updated_at', '<', $endDate)
+                        ->select('users_orders.updated_at', $total_item)
+                        ->groupBy('users_orders.updated_at')
                         ->get();
-        // dd($count_ware);
+        // Đơn hàng tháng thành công
+        $count_ware1 = DB::table('users_orders')
+                        ->where('users_orders.status', '=', 1)
+                        ->where('users_orders.updated_at', '>', $startDate)
+                        ->where('users_orders.updated_at', '<', $endDate)
+                        ->select('users_orders.updated_at', $total_item)
+                        ->groupBy('users_orders.updated_at')
+                        ->get();
+        // Đơn hàng tháng thất bại
+        $count_ware2 = DB::table('users_orders')
+                        ->where('users_orders.status', '=', -1)
+                        ->where('users_orders.updated_at', '>', $startDate)
+                        ->where('users_orders.updated_at', '<', $endDate)
+                        ->select('users_orders.updated_at', $total_item)
+                        ->groupBy('users_orders.updated_at')
+                        ->get();
+
         // tạo dữ liệu mẫu
         for ($i=0; $i < 32; $i++) { 
             $data[$i] = 0;
+            $data1[$i] = 0;
+            $data2[$i] = 0;
         }
 
         // lấy dữ liệu thật
         foreach ($count_ware as $key => $value) {
-            $date = (int)substr($value->created_at, 8, 2);
+            $date = (int)substr($value->updated_at, 8, 2);
             $data[$date] = $value->total;
         }
-        return view('admin.statistical.index', compact('data', 'count_ware'));
-    }
-
-    public function create()
-    {
-        $items = $this->item->all();
-        $categories = DB::table('categories')->get();
-        $resources = DB::table('resources')->get();
-        $trademarks = DB::table('trademarks')->get();
-        $gallery = $this->gallery->all();
-        return view('admin.item.add', compact('items', 'categories', 'resources', 'trademarks', 'gallery'));
-    }
-
-    public function store(Request $request){
-    	// dd($request);
-    	try {
-            DB::beginTransaction();
-            // Insert data to user table
-            $itemCreate = $this->item->create([
-                'category_id' => $request->category_index,
-                'item_name' => $request->item_name,
-                'item_size' => $request->item_size,
-                'item_discount' => $request->item_discount,
-                'item_resource' => $request->resource_index,
-                'item_trademark' => $request->trademark_index,
-                'item_prices' => $request->item_prices,
-                'item_image' => $request->item_image,
-                'item_amounts' => '1',
-                'item_detail' => $request->item_detail,
-            ]);
-
-            DB::commit();
-            return redirect()->route('item.index');
-        } catch (\Exception $exception) {
-            DB::rollBack();
+        foreach ($count_ware1 as $key => $value) {
+            $date = (int)substr($value->updated_at, 8, 2);
+            $data1[$date] = $value->total;
         }
-    }
-
-    /**
-     * @param $id
-     * show form edit
-     */
-    public function edit($id)
-    {
-        // $items = $this->item->first();
-        // dd($items);
-        $items = DB::table('items')
-            ->join('categories', 'items.category_id', '=', 'categories.id')
-            ->join('resources', 'items.item_resource', '=', 'resources.id')
-            ->join('trademarks', 'items.item_trademark', '=', 'trademarks.id')
-            ->where('items.id', $id)
-            ->select('items.*', 'resources.resource_name', 'trademarks.trademark_name', 'categories.category_name')
-            ->first();
-        $categories = DB::table('categories')->get();
-        $resources = DB::table('resources')->get();
-        $trademarks = DB::table('trademarks')->get();
-        $gallery = $this->gallery->all();
-        return view('admin.item.edit', compact('items', 'categories', 'resources', 'trademarks', 'gallery'));
-    }
-
-    /**
-     * @param Request $request
-     * @param $id
-     * @return mixed
-     */
-
-    public function update(Request $request, $id)
-    {
-        try {
-            DB::beginTransaction();
-            // update user tabale
-            $this->item->where('id', $id)->update([
-                'category_id' => $request->category_index,
-                'item_name' => $request->item_name,
-                'item_size' => $request->item_size,
-                'item_discount' => $request->item_discount,
-                'item_resource' => $request->resource_index,
-                'item_trademark' => $request->trademark_index,
-                'item_prices' => $request->item_prices,
-                'item_image' => $request->item_image,
-                'item_detail' => $request->item_detail,
-            ]);
-
-            DB::commit();
-            return redirect()->route('item.index');
-        } catch (\Exception $exception) {
-            dd($exception);
-            DB::rollBack();
+        foreach ($count_ware2 as $key => $value) {
+            $date = (int)substr($value->updated_at, 8, 2);
+            $data2[$date] = $value->total;
         }
+        // dd($count_ware);
 
+        // đơn hàng thành công 
+        $order_success = DB::table('users_orders')
+                        ->where('users_orders.status', '=', 1)
+                        ->select('users_orders.status', DB::raw('count(users_orders.status) as total'))
+                        ->groupBy('users_orders.status')
+                        ->first();
+        // đơn hàng Hủy
+        $order_remove = DB::table('users_orders')
+                        ->where('users_orders.status', '=', -1)
+                        ->select('users_orders.status', DB::raw('count(users_orders.status) as total'))
+                        ->groupBy('users_orders.status')
+                        ->first();
 
-    }
+        //  Doanh Thu
+        $order_prices = DB::table('users_orders')
+                        ->where('users_orders.status', '=', 1)
+                        ->select('users_orders.status', DB::raw('sum(users_orders.total_price) as total'))
+                        ->groupBy('users_orders.status')
+                        ->first();
 
+        //  Sản Phẩm Bán Ra
+        $order_item = DB::table('users_orders')
+                        ->join('sub_orders', 'sub_orders.order_id', '=', 'users_orders.id')
+                        ->where('users_orders.status', '=', 1)
+                        ->select('users_orders.status', DB::raw('sum(sub_orders.amounts) as total'))
+                        ->groupBy('users_orders.status')
+                        ->first();
+        // dd($order_item);
 
-    public function delete($id)
-    {
-        try {
-            DB::beginTransaction();
-            // Delete category
-            $item = $this->item->find($id);
-            $item->delete($id);
-            DB::commit();
-            return redirect()->route('item.index');
-        } catch (\Exception $exception) {
-            DB::rollBack();
-        }
-
+        return view('admin.statistical.index', compact('data', 'data1', 'data2', 'count_ware', 'count_ware1', 'count_ware2', 'order_success', 'order_remove', 'order_prices', 'order_item'));
     }
 }
