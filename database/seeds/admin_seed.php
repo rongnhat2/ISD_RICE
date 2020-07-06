@@ -109,6 +109,12 @@ class admin_seed extends Seeder
             "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
             "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
         ]);
+        DB::table('pages')->insert([
+            'about_us'           => '1',
+            'contact'           => '1',
+            "created_at"        =>  \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+            "updated_at"        => \Carbon\Carbon::now('Asia/Ho_Chi_Minh'),
+        ]);
         for ($i=1; $i <= 12 ; $i++) { 
             DB::table('role_permission')->insert([
                 'permission_id'     => $i,
